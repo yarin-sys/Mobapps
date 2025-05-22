@@ -1,4 +1,4 @@
-# GSC-Project
+# Mobapps Project
 
 # cd to to fixit directory first
 cd fixit
