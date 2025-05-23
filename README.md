@@ -33,4 +33,7 @@ python3 manage.py
 ```
 
 ## run the server
-python3 manage.py 
+```bash
+python3 manage.py
+```
+
