@@ -29,11 +29,11 @@ python3 manage.py migrate
 
 ## create super user
 ```bash
-python3 manage.py
+python3 manage.py createsuperuser
 ```
 
 ## run the server
 ```bash
-python3 manage.py
+python3 manage.py startserver
 ```
 
