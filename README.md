@@ -18,7 +18,7 @@ source env/bin/activate
 
 ## install dependency
 ```bash
-pip install -r requirements.py (make sure you at right directory)
+pip install -r requirements.txt (make sure you at right directory)
 ```
 
 ## database migration (make sure manage.py in the current directory) 
