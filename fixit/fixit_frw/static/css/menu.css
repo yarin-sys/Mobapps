@@ -1,6 +1,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #fff6e5;
+  padding-top: 70px; /* Adjust if navbar height changes */
 }
 
 .navbar .nav-link {
@@ -10,39 +11,53 @@ body {
   margin-left: 1.5rem;
 }
 
-.header h1 {
+.navbar-brand img {
+  max-height: 50px; /* Control logo height */
+}
+
+.header h1 { /* This class seems unused in menupage.html header */
   color: #164058;
 }
 
 .card.custom-card {
   border: 4px solid #ffc107;
   border-radius: 16px;
-  width: 180px;
-  flex: 0 0 auto;
+  width: 180px; /* Consider using relative units or Bootstrap grid for responsiveness */
+  flex: 0 0 auto; /* For scrolling wrapper */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.card.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+
 .card.custom-card img {
-  border-top-left-radius: 12px;
+  border-top-left-radius: 12px; /* Match card's border radius */
   border-top-right-radius: 12px;
   height: 150px;
   object-fit: cover;
 }
 
 .card.custom-card .card-body {
-  background-color: #ffc107; /* Ensure the card body matches the background */
+  background-color: #ffc107;
+  padding: 0.75rem;
 }
 
 .card.custom-card .card-title {
-  color: #164058; /* Change the title color to ensure it's readable */
+  color: #164058;
+  font-size: 0.9rem; /* Adjust as needed */
 }
 
 .scrolling-wrapper {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #ccc #f0f0f0; /* For Firefox */
+  -ms-overflow-style: none; /* For IE and Edge */
 }
 
 .scrolling-wrapper::-webkit-scrollbar {
-  display: none;
+  height: 8px; /* Make scrollbar visible for Webkit */
+  background-color: #f0f0f0;
 }
 
 .scrolling-wrapper::-webkit-scrollbar-thumb {
@@ -51,50 +66,47 @@ body {
 }
 
 .hero-wrapper {
-  padding-top: 1rem;
+  /* padding-top: 1rem; */ /* Removed as body has padding-top */
   padding-bottom: 2rem;
 }
 
+/* Removed hero-banner background-image here as it's now inline in the template */
+/*
 .hero-banner {
-  background-image: url('{% static "Images/main_img.jpg" %}');
   background-size: cover;
   background-position: center;
   height: 420px;
-  border-radius: 1.5rem; /* Soft rounded edges */
+  border-radius: 1.5rem;
 }
+*/
 
 .hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.45); /* darken effect */
-  z-index: 1;
-  border-radius: inherit;
+  /* position: absolute; top: 0; left: 0; width: 100%; height: 100%; */ /* Already inline */
+  /* background: rgba(0, 0, 0, 0.45); */
+  /* z-index: 1; */
+  border-radius: inherit; /* Ensure overlay inherits border radius */
 }
 
 .hero-content {
-  z-index: 2;
-  position: relative;
+  /* z-index: 2; position: relative; */ /* Already inline */
 }
 
 .hero-title {
-  font-family: 'Georgia', serif;
-  font-size: 2rem;
+  font-family: 'Georgia', serif; /* Using a more classic font for titles */
+  font-size: 2.5rem; /* Responsive font size can be used with @media queries */
   color: white;
   margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-style: italic;
   color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
 
-.hero-wrapper {
-  padding-top: 5rem;
-  padding-bottom: 2rem;
-}
-
+/* custom-nav class seems to be used for footer */
 .custom-nav {
   background-color: #FFF6E5;
   color: black;
@@ -103,8 +115,28 @@ body {
 .custom-nav a {
   color: black;
   text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease-in-out;
 }
 
 .custom-nav a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: #c6a736; /* Example hover color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  .navbar .nav-link {
+    margin-left: 0.5rem;
+    font-size: 18px;
+  }
+  .card.custom-card {
+    width: 150px;
+  }
 }
