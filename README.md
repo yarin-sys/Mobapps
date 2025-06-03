@@ -51,20 +51,5 @@ python3 manage.py createsuperuser
 python3 manage.py createsuperuser
 ```
 
-## Project Structure and Frontend Integration
-The main Django application logic is in the fixit_frw app directory within fixit/.
-Templates: HTML files are primarily located in fixit/fixit_frw/templates/. Pages like the landing page, maps page, and confirmation page have been structured to be served as Django templates.
-
-    Example: fixit/fixit_frw/templates/landing/index.html
-
-Static Files: CSS, JavaScript, and images are located in fixit/fixit_frw/static/. Django's development server will automatically serve these when DEBUG = True.
-
-    App-specific CSS/JS: fixit/fixit_frw/static/css/, fixit/fixit_frw/static/js/, and subfolders like fixit/fixit_frw/static/landing/ for landing page specific CSS/JS.
-    Shared image assets: fixit/fixit_frw/static/assets/img/
-    Other images (e.g., for menupage.html): fixit/fixit_frw/static/Images/
-
-Static File Usage in Templates: Always use {% load static %} at the top of your templates and then the {% static %} template tag to refer to static files. Example: <link rel="stylesheet" href="{% static 'css/main.css' %}"> or <img src="{% static 'assets/img/logo.png' %}">.
-URL Usage in Templates: Always use the {% url 'view_name' %} template tag for internal links, where 'view_name' is the name parameter given to a path() in your urls.py.
-
 
 
