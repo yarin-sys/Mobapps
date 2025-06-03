@@ -4,6 +4,12 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     phone = models.CharField(null=True, blank=True,unique=True, max_length=20)
     address = models.TextField()
+    profile_pict = models.ImageField(
+        upload_to='profile_pics/',
+        null=False,
+        blank=True,
+        default='profile_pic/default.jpg'  # This file should exist in your media folder
+    )
 
 class RepairRequest(models.Model):
     item_name = models.CharField(max_length=255)
