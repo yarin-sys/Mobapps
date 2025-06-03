@@ -8,7 +8,7 @@ class User(AbstractUser):
         upload_to='profile_pics/',
         null=False,
         blank=True,
-        default='profile_pic/default.jpg'  # This file should exist in your media folder
+        default='profile_pic/default.jpg' #default profpic if inputted null
     )
 
 class RepairRequest(models.Model):
