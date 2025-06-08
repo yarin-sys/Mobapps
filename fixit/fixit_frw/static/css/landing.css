@@ -43,6 +43,14 @@ body {
   gap: 1rem;
 }
 
+.nav-link {
+  font-size: clamp(16px, 2.5vw, 26px) !important;
+}
+
+.right-nav a {
+  font-size: clamp(16px, 2.5vw, 26px) !important;
+}
+
 li a {
   text-decoration: none;
   position: relative;
@@ -69,12 +77,14 @@ li a:hover::after {
 }
 
 .header img {
-  width: 231px;
-  height: 239px;
+  max-width: 90vw;    /* Max width 90% of viewport width */
+  width: 231px;       /* Default width */
+  height: auto;       /* Maintain aspect ratio */
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: -70%;
+  max-height: 239px;  /* Maximum height */
 }
 
 .title {
@@ -85,13 +95,15 @@ li a:hover::after {
 }
 
 .text {
-  font-size: 48px;
+  font-size: clamp(24px, 5vw, 48px);
   font-family: italiana;
+  text-align: center;
 }
 
 .subtext {
-  font-size: 32px;
+  font-size: clamp(12px, 3vw, 32px) ;
   font-family: inter;
+  text-align: center;
   font-weight: 400;
 }
 
@@ -129,6 +141,8 @@ section {
 }
 
 .container-section img {
+  max-width: 100%;
+  height: auto;
   border-radius: 18px;
   border: solid 10px #000000;
 }
@@ -181,8 +195,13 @@ footer {
   align-items: center;
   gap: 5rem;
   margin-top: 5rem;
-  width: 592px;
+  flex-wrap: wrap;
+  padding: 0;
+  width: 100%;
+  max-width: 592px;
   border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 li {
@@ -224,11 +243,14 @@ li {
   }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 992px) {
   .container-section {
-    flex-direction: column;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem
     padding: 0rem 2rem;
     margin: 8rem 0rem 12rem;
+    text-align: center;
   }
 
   .container-list ul li a {
@@ -236,12 +258,47 @@ li {
   }
 
   .text-desc {
-    padding: 2rem;
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center !important;
+
+  .text-desc h1,
+  .text-desc p {
+    text-align: center !important;
+
   }
 }
 
 @media (max-width: 722px) {
   .container {
     padding: 0px 1rem;
+  }
+}
+
+/* For smaller screens header*/
+@media (max-width: 768px) {
+  .header img {
+    width: 150px;    /* Smaller width */
+    top: -50%;      /* Adjust vertical position */
+  }
+}
+/* For smaller screens header*/
+@media (max-width: 480px) {
+  .header img {
+    width: 120px;    /* Even smaller */
+    top: -40%;
+  }
+}
+
+/* For smaller screens footer*/
+@media (max-width: 600px) {
+  .container-list ul {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .container-list ul li a {
+    font-size: 18px;
   }
 }

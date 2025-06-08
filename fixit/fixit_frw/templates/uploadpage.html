@@ -12,84 +12,132 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #fff6e5; backdrop-filter: blur(15px); margin: 1rem 2rem;">
+    <!-- Start of Navbar -->.
+    <nav class="navbar navbar-expand-lg fixed-top px-4 shadow-sm" style="background-color: #FFF6E5;">
       <div class="container-fluid">
-        <a href="{% url 'menu_page' %}">
-          <img src="{% static 'Images/logo-fixit.jpg' %}" class="img-fluid" alt="FixIt Forward Logo" style="width: 157px; height: 60px" />
+        <a class="navbar-brand" href="{% url 'landing_page' %}">
+          <img src="{% static 'Images/logo-fixit.jpg' %}" alt="Fixit Forward Logo" width="150" height="60"/>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link active" href="{% url 'menu_page' %}#Aboutus">About Us</a></li> {# Assuming Aboutus is a section in menu_page #}
-            <li class="nav-item"><a class="nav-link active" href="{% url 'menu_page' %}#user">User</a></li>
-            <li class="nav-item"><a class="nav-link active" href="{% url 'menu_page' %}#repairer">Repairer</a></li>
-            <li class="nav-item"><a class="nav-link active" href="{% url 'menu_page' %}#community">Community</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'menu_page' %}">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="#user">User Guide</a></li> {# Assuming these are sections on the page or separate pages #}
+            <li class="nav-item"><a class="nav-link" href="#repairer">Repairer Guide</a></li>
+            <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
           </ul>
-          <div class="right-nav d-flex align-items-center">
-            <i class="fa-solid fa-magnifying-glass me-3" id="search-icon" style="cursor: pointer;"></i>
+          <div class="d-flex align-items-center gap-3">
+            <i class="fa-solid fa-magnifying-glass" id="search-icon" style="cursor: pointer;"></i>
+            <form class="d-flex d-none" id="search-form" method="GET" action="#"> {# Add action for search #}
+              <input class="form-control me-2" type="search" name="q" placeholder="Search items..." aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
             {% if user.is_authenticated %}
-              <a href="#" class="nav-link me-2" style="font-size: 26px; font-weight: 400;">{{ user.username }}</a>
-              <a href="{% url 'logout' %}" class="nav-link" style="font-size: 26px; font-weight: 400;">Sign-out</a>
+              <a href="#" class="text-decoration-none me-2">Hi, {{ user.username }}</a> {# Link to profile page #}
+              <a href="{% url 'logout' %}" class="btn btn-outline-primary btn-sm">Logout</a>
             {% else %}
-              <a href="{% url 'login' %}" class="nav-link" style="font-size: 26px; font-weight: 400;">Sign-in</a>
+              <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login</a>
+              <a href="{% url 'signup' %}" class="btn btn-secondary btn-sm ms-2">Sign Up</a>
             {% endif %}
           </div>
         </div>
       </div>
     </nav>
+    <!-- Navbar -->.
 
-    <!-- Upload Form Section -->
     <section class="form-section container mt-5 pt-5">
-      <div class="form-wrapper p-5 rounded">
-        <form method="POST" enctype="multipart/form-data">
+      <div class="form-wrapper p-5 rounded" style="margin-top: 8rem;"> {# Increased margin-top #}
+        <h2 class="text-center mb-4">Upload Your Item for Repair</h2>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" action="{% url 'upload_item' %}">
           {% csrf_token %}
 
           <div class="mb-3">
-            <label for="itemName" class="form-label">Item’s Name</label>
-            <input type="text" class="form-control" id="itemName" name="itemName" placeholder="Enter item name" required>
+            <label for="{{ form.item_name.id_for_label }}" class="form-label">{{ form.item_name.label }}</label>
+            {{ form.item_name }}
+            {% if form.item_name.errors %}<div class="invalid-feedback d-block">{{ form.item_name.errors|join:", " }}</div>{% endif %}
           </div>
 
           <div class="mb-3">
-            <label class="form-label fw-bold">Item’s Photo or Video</label>
+            <label class="form-label fw-bold">Item’s Photo or Video (up to 10 images)</label>
+             <input type="file" name="images" id="id_images" multiple class="form-control" accept="image/*">
+            <small class="form-text text-muted">Select one or more images.</small>
+            {% comment %}
+            Original multi-box upload:
             <div class="row g-2">
               {% for i in "1234567890"|make_list %}
               <div class="col-6 col-sm-4 col-md-2">
                 <label for="image_{{ forloop.counter }}" class="upload-box d-flex justify-content-center align-items-center" style="cursor: pointer; height: 100px; border: 1px dashed #ccc; border-radius: 8px;">
                   <i class="fa-solid fa-upload fa-2x text-muted"></i>
                 </label>
-                <input type="file" name="images" id="image_{{ forloop.counter }}" accept="image/*" class="d-none">
+                <input type="file" name="images" id="image_{{ forloop.counter }}" accept="image/*" class="d-none" onchange="previewImage(this, {{ forloop.counter }})">
+                 <img id="preview_{{ forloop.counter }}" src="#" alt="Image preview" style="max-width: 100%; max-height: 100px; display: none; margin-top: 5px;"/>
               </div>
               {% endfor %}
             </div>
+            {% endcomment %}
+            {% if form.non_field_errors %}<div class="invalid-feedback d-block">{{ form.non_field_errors|join:", " }}</div>{% endif %}
+             {% if form.images.errors %}<div class="invalid-feedback d-block">{{ form.images.errors|join:", " }}</div>{% endif %} {# If 'images' becomes a form field #}
           </div>
 
           <div class="mb-3">
-            <label for="problemDesc" class="form-label">Describe your problem</label>
-            <textarea class="form-control" id="problemDesc" name="problemDesc" rows="4" required></textarea>
+            <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }}</label>
+            {{ form.description }}
+            {% if form.description.errors %}<div class="invalid-feedback d-block">{{ form.description.errors|join:", " }}</div>{% endif %}
           </div>
 
           <div class="mb-3">
-            <label for="pickupAddress" class="form-label">Pick-up Address</label>
-            <textarea class="form-control" id="pickupAddress" name="pickupAddress" rows="3" required></textarea>
+            <label for="{{ form.pickup_address.id_for_label }}" class="form-label">{{ form.pickup_address.label }}</label>
+            {{ form.pickup_address }}
+            {% if form.pickup_address.errors %}<div class="invalid-feedback d-block">{{ form.pickup_address.errors|join:", " }}</div>{% endif %}
           </div>
 
           <div class="mb-3">
-            <label for="offerPrice" class="form-label">What price do you offer?</label>
-            <input type="text" class="form-control" id="offerPrice" name="offerPrice" placeholder="e.g. $20" required>
+            <label for="{{ form.offer_price.id_for_label }}" class="form-label">{{ form.offer_price.label }}</label>
+            {{ form.offer_price }}
+            {% if form.offer_price.errors %}<div class="invalid-feedback d-block">{{ form.offer_price.errors|join:", " }}</div>{% endif %}
           </div>
 
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end mt-4">
             <button type="reset" class="btn btn-secondary me-2">Cancel</button>
-            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm & Upload</button>
           </div>
         </form>
       </div>
     </section>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/upload.js' %}"></script>
+    <script>
+      // Optional: JavaScript for image preview if using individual boxes
+      function previewImage(input, counter) {
+        const file = input.files[0];
+        if (file) {
+          const reader = new FileReader();
+          const previewElement = document.getElementById('preview_' + counter);
+          const uploadIconLabel = input.previousElementSibling; // The label with the icon
+
+          reader.onload = function(e) {
+            if (previewElement) {
+              previewElement.src = e.target.result;
+              previewElement.style.display = 'block';
+              if(uploadIconLabel) uploadIconLabel.style.display = 'none'; // Hide icon
+            }
+          }
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
   </body>
 </html>

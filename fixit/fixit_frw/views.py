@@ -45,7 +45,20 @@ def authView(request): # This is the signup view
 
 @login_required
 def menu_page_view(request):
-    return render(request, 'menupage.html')
+    featured_items = RepairRequest.objects.prefetch_related('images').order_by('-created_at')[:12]
+    return render(request, 'menupage.html', {'featured_items': featured_items})
+
+@login_required
+def product_details_views(request):
+    return render(request, 'ProductDetails.html')
+
+@login_required
+def chat_page_views(request):
+    return render(request, 'chatpage.html')
+
+@login_required
+def fixit_success_view(request):
+    return render(request, 'fixit_success_page.html')
 
 @login_required
 def upload_item_view(request):
@@ -76,6 +89,17 @@ def upload_item_view(request):
 @login_required
 def upload_success_view(request):
     return render(request, 'success_page.html')
+
+# --- repairrequest models ---
+@login_required
+def repairrequest_list(request):
+    repair_requests = RepairRequest.objects.all()
+    return render(request, 'repairrequest_list.html', {'repair_requests': repair_requests})
+
+# --- repairrequest models ---
+def repairrequest_detail(request, pk):
+    repair_request = get_object_or_404(RepairRequest, pk=pk)
+    return render(request, 'repairrequest_detail.html', {'repair_request': repair_request})
 
 # --- Update these other placeholder views similarly if you want Django to serve them ---
 def confirmation_page_view(request, item_id):

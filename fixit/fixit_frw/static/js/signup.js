@@ -10,7 +10,7 @@ signupForm.addEventListener("submit", function (e) {
   let fileInput = document.querySelector('input[type="file"]');
   signupFormData.append("file", fileInput.files[0]);
 
-  fetch("http://localhost:8000/signup2/", {
+  fetch("http://localhost:8000/signup/", {
     method: "POST",
     body: signupFormData,
   })

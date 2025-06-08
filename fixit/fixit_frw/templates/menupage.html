@@ -72,11 +72,15 @@
     <div class="scrolling-wrapper d-flex overflow-auto pb-3">
       <!-- Card Items -->
       <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem2.png' %}" class="card-img-top" alt="Black Headphone">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Black Headphone</p>
-        </div>
+      {% if item.images.first %}
+        <img src="{{ item.images.first.image.url }}" class="card-img-top" alt="{{ item.item_name }}">
+      {% else %}
+        <img src="{% static 'Images/default.jpeg' %}" class="card-img-top" alt="Default Image">
+      {% endif %}
+      <div class="card-body text-center">
+        <p class="card-title fw-bold mb-0">{{ item.item_name }}</p>
       </div>
+    </div>
 
       <div class="card custom-card me-3">
         <img src="{% static 'Images/brokenitem4.png' %}" class="card-img-top" alt="Blue Controller">
@@ -164,6 +168,8 @@
     </div>
   </div>
 </section>
+
+<!-- Carousel Section -->
 
 
 <!-- Start of second section -->

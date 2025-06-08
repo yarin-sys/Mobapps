@@ -5,10 +5,10 @@ body {
 }
 
 .navbar .nav-link {
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 26px;
+  font-weight: 400;
   color: #164058 !important;
-  margin-left: 1.5rem;
+  margin-left: 2.3rem;
 }
 
 .navbar-brand img {
