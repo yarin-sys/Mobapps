@@ -167,12 +167,6 @@ section {
   text-wrap: nowrap;
 }
 
-footer {
-  margin-top: 8rem;
-  text-align: center;
-  position: relative;
-}
-
 .container button {
   background-color: #164058;
   color: white;
@@ -290,15 +284,189 @@ li {
   }
 }
 
-/* For smaller screens footer*/
-@media (max-width: 600px) {
-  .container-list ul {
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 2rem;
+.container-list ul li a {
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 400;
+  transition: color 0.3s ease-in-out;
+}
+
+.container-list ul {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 5rem;
+  border-radius: 8px;
+}
+
+
+.custom-nav {
+  background-color: #FFF6E5;
+  color: black;
+}
+
+.custom-nav a {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-nav a:hover {
+  text-decoration: none;
+  color: #c6a736; /* Example hover color */
+}
+/* Improve image and text responsiveness */
+
+.container-section img {
+  width: 100%;
+  max-width: 722px;
+  height: auto;
+}
+
+.text-desc h1 {
+  font-size: clamp(24px, 5vw, 48px);
+}
+
+.text-desc p {
+  font-size: clamp(16px, 4vw, 40px);
+}
+
+/* Responsive container for "join" section */
+.container h1 {
+  font-size: clamp(20px, 6vw, 48px);
+}
+
+.container button a {
+  font-size: clamp(20px, 6vw, 48px);
+}
+
+/* Fix unclosed media query */
+@media (max-width: 992px) {
+  .container-section {
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem;
+    padding: 0rem 2rem;
+    margin: 8rem 0rem 12rem;
+    text-align: center;
   }
 
   .container-list ul li a {
     font-size: 18px;
   }
+
+  .text-desc {
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center !important;
+  }
+
+  .text-desc h1,
+  .text-desc p {
+    text-align: center !important;
+  }
+}
+
+/* Header text and logo responsiveness */
+@media (max-width: 768px) {
+  .header img {
+    width: 150px;
+    top: -50%;
+  }
+
+  .text {
+    font-size: clamp(20px, 6vw, 36px);
+  }
+
+  .subtext {
+    font-size: clamp(14px, 4vw, 24px);
+  }
+}
+
+@media (max-width: 480px) {
+  .header img {
+    width: 120px;
+    top: -40%;
+  }
+}
+
+.join .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  width: 100%;
+  max-width: 592px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.join .container button {
+  background-color: #164058;
+  border: 2px solid black;
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.join .container button:hover {
+  background-color: #c6a736;
+  color: black;
+}
+
+.join .container h1 {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 6vw, 48px);
+  margin: 0;
+}
+
+/* Optional: Make button and text stack vertically on small screens */
+@media (max-width: 480px) {
+  .join .container {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .join .container button,
+  .join .container h1 {
+    width: 100%;
+  }
+
+  .join .container button a {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.footer-container {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+footer ul li a {
+  font-family: "Inter", sans-serif;
+  color: black;
+  font-size: clamp(14px, 2.5vw, 20px);
+  transition: color 0.2s ease-in-out;
+}
+
+footer ul li a:hover {
+  color: #c6a736;
+}
+
+footer p {
+  font-size: 14px;
+  color: #000;
 }

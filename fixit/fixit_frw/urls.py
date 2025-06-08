@@ -20,7 +20,7 @@ urlpatterns = [
     # Main application views
     path('', views.landing_page_view, name='landing_page'), # Assuming landing page is the root
     path('menu/', views.menu_page_view, name='menu_page'),
-    path('menu/product_details', views.product_details_views, name='product_details'),
+    path('menu/product_details', views.repairrequest_detail, name='product_details'),
     path('menu/product_details/chatpage', views.chat_page_views, name='chatpage'),
     path('menu/product_details/fixit_success_page', views.fixit_success_view, name='fixit_success_page'),
     path('upload/', views.upload_item_view, name='upload_item'), # Renamed from uploadpage

@@ -43,10 +43,10 @@ def authView(request): # This is the signup view
         form = CustomUserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
 
-@login_required
+@login_required #menupage item requests
 def menu_page_view(request):
-    featured_items = RepairRequest.objects.prefetch_related('images').order_by('-created_at')[:12]
-    return render(request, 'menupage.html', {'featured_items': featured_items})
+    repair_requests = RepairRequest.objects.all().order_by('-created_at')
+    return render(request, 'menupage.html', {'repair_requests': repair_requests})
 
 @login_required
 def product_details_views(request):
@@ -99,7 +99,7 @@ def repairrequest_list(request):
 # --- repairrequest models ---
 def repairrequest_detail(request, pk):
     repair_request = get_object_or_404(RepairRequest, pk=pk)
-    return render(request, 'repairrequest_detail.html', {'repair_request': repair_request})
+    return render(request, 'ProductDetails.html', {'repair_request': repair_request})
 
 # --- Update these other placeholder views similarly if you want Django to serve them ---
 def confirmation_page_view(request, item_id):

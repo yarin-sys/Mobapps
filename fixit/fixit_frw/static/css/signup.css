@@ -151,10 +151,22 @@ h2 {
   border-radius: 8px;
 }
 
-footer {
-  margin-top: 8rem;
-  text-align: center;
-  position: relative;
+
+.custom-nav {
+  background-color: #FFF6E5;
+  color: black;
+}
+
+.custom-nav a {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.custom-nav a:hover {
+  text-decoration: none;
+  color: #c6a736; /* Example hover color */
 }
 
 .copyright p {

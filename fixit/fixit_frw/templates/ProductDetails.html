@@ -46,36 +46,47 @@
     </div>
   </nav>
   <!-- Navbar -->
-
-    <main>
-      <div class="container-card">
-        <div class="pict-desc">
-          <div class="pict">
-            <img src="/assets/img/confirm-page.jpg" alt="" width="100%" height="100%" />
-          </div>
-          <div class="desc">
-            <h1 style="font-weight: 700">Broken Drill</h1>
-            <h2><b>Agreed fee:</b> Rp50000</h2>
-            <div class="address">
-              <h2>Pickup Adress:</h2>
-              <!-- <br /> -->
-              <p>Jl. Raya No. 123, Jakarta</p>
-            </div>
-          </div>
+  <main>
+    <div class="container-card">
+      <div class="pict-desc">
+        <div class="pict">
+          {% if repair_request.images.all %}
+            <img src="{{ repair_request.images.first.image.url }}" alt="{{ repair_request.item_name }}" width="100%" height="100%" />
+          {% else %}
+            <img src="{% static 'default_image.jpg' %}" alt="No image" width="100%" height="100%" />
+          {% endif %}
         </div>
-        <div class="confirm">
-          <div class="map" onclick="goToHalamanB()">
-            <iframe src="/maps/index.html" frameborder="1" onclick="goToHalamanB()"></iframe>
-            <button>GO TO MAP</button>
+        <div class="desc">
+          <h1 style="font-weight: 700">{{ repair_request.item_name }}</h1>
+          <h2><b>Fee:</b> US{{ repair_request.offer_price }}</h2>
+          <div class="item_desc">
+            <h2>Item Description:</h2>
+            <p>{{ repair_request.description }}</p>
           </div>
-          <div class="btn">
-            <button class="nav-item"><a class="nav-link" href="{% url 'upload_success' %}" class="btn btn-secondary me-2">Fix it </button>
-            <button class="nav-item"><a class="nav-link" href="{% url 'chatpage' %}" class="btn btn-primary">Chat & Negotiated</button>
+          <div class="address">
+            <h2>Pickup Address:</h2>
+            <p>{{ repair_request.pickup_address }}</p>
           </div>
         </div>
       </div>
-    </main>
 
-    <script src="{% static 'js/productdetails.js.js' %}"></script>
+      <div class="confirm">
+        <div class="map" onclick="goToHalamanB()">
+          <iframe src="{% static 'maps/index.html' %}" frameborder="1" onclick="goToHalamanB()"></iframe>
+          <button>GO TO MAP</button>
+        </div>
+        <div class="btn">
+          <button class="nav-item">
+            <a class="nav-link" href="{% url 'upload_success' %}">Fix it</a>
+          </button>
+          <button class="nav-item">
+            <a class="nav-link" href="{% url 'chatpage' %}">Chat & Negotiated</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+    <script src="{% static 'js/productdetails.js' %}"></script>
   </body>
 </html>

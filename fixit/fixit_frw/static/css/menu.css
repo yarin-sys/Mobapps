@@ -4,10 +4,10 @@ body {
   padding-top: 70px; /* Adjust if navbar height changes */
 }
 
-.navbar .nav-link {
+.navbar-nav .nav-link {
   font-size: 26px;
   font-weight: 400;
-  color: #164058 !important;
+  color: #164058;
   margin-left: 2.3rem;
 }
 

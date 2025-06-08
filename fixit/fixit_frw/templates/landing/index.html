@@ -71,8 +71,8 @@
      <div class="container-section">
         <img src="{% static 'assets/img/foto-pertama.jpg' %}" alt="People working together on a project" width="722px" height="489px">
         <div class="text-desc">
-          <h1 style="font-family: italiana; font-size: 47.9px;">About Us</h1>
-          <p style="font-size: 40.45px; font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem">
+          <h1 style="font-family: italiana; font-size: clamp(24px, 5vw, 48px);">About Us</h1>
+          <p style="font-size: clamp(16px, 4vw, 40px); font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem">
             Learn about FixIt Forward’s mission to give broken things a second life.
             We aim to reduce waste and foster a repair culture by connecting people who need repairs with those who can fix them.
           </p>
@@ -84,8 +84,8 @@
       <div class="container-section">
         <img src="{% static 'assets/img/foto-kedua.jpg' %}" alt="User interacting with the Fixit Forward platform" width="722px" height="489px" style="order: 2;">
         <div class="text-desc">
-          <h1 style="font-family: italiana; font-size: 47.9px;text-align: right;">User</h1>
-          <p style="font-size: 40.45px; font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem; text-align:right;">
+          <h1 style="font-family: italiana; font-size: clamp(24px, 5vw, 48px);text-align: right;">User</h1>
+          <p style="font-size: clamp(16px, 4vw, 40px); font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem; text-align:right;">
             Need something repaired? <br><br>
             Sign up as a User to easily request services for broken items. Browse Repairers, get matched, and extend the life of your possessions.
           </p>
@@ -97,8 +97,8 @@
       <div class="container-section">
         <img src="{% static 'assets/img/foto-ketiga.jpg' %}" alt="Repairer working on an item" width="722px" height="489px" style="object-fit: cover; background-size: cover;">
         <div class="text-desc">
-          <h1 style="font-family: italiana; font-size: 47.9px;">Repairer</h1>
-          <p style="font-size: 40.45px; font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem">
+          <h1 style="font-family: italiana; font-size: clamp(24px, 5vw, 48px);">Repairer</h1>
+          <p style="font-size: clamp(16px, 4vw, 40px); font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem">
             Join as a Repairer to offer your skills and help others bring damaged items back to life <br>
             Earn, grow your portfolio, and be part of a sustainable movement.
           </p>
@@ -110,8 +110,8 @@
       <div class="container-section">
         <img src="{% static 'assets/img/foto-keempat.jpg' %}" alt="Community members collaborating" width="722px" height="489px" style="order: 2;">
         <div class="text-desc">
-          <h1 style="font-family: italiana; font-size: 47.9px;text-align: right;">Community Empowerment</h1>
-          <p style="font-size: 40.45px; font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem;text-align: right;">
+          <h1 style="font-family: italiana; font-size: clamp(24px, 5vw, 48px);text-align: right;">Community Empowerment</h1>
+          <p style="font-size: clamp(16px, 4vw, 40px); font-family: inter; font-weight: 400; color: #164058; margin-top: 1rem;text-align: right;">
             We’re more than a repair platform,
             We're a community. <br>
             Through sharing, repairing, and collaborating, we empower local talent and foster environmental responsibility.
@@ -122,23 +122,22 @@
 
     <div class="join">
       <div class="container">
-        <button><a href="{% url 'signup' %}" style="color: white; text-decoration: none; font-family: inter; font-size: 48px; font-weight: 700;">Join</a></button>
-        <h1 style="font-family: inter; font-weight: 400;font-size: 48px;">Our Community!</h1>
+        <button><a href="{% url 'signup' %}" style="color: white; text-decoration: none; font-family: inter; font-size: clamp(20px, 6vw, 48px); font-weight: 700;">Join</a></button>
+        <h1 style="font-family: inter; font-weight: 400;font-size: clamp(20px, 6vw, 48px);">Our Community!</h1>
       </div>
     </div>
 
-    <footer>
-      <div class="container-list">
-        <ul>
-          <li><a href="{% url 'landing_page' %}">Home</a></li>
-          <li><a href="#Aboutus">About</a></li>
-          <li><a href="#">Features</a></li> {# Add appropriate URL or anchor #}
-          <li><a href="#">Contact</a></li> {# Add appropriate URL or anchor #}
-          <li><a href="#">Privacy</a></li> {# Add appropriate URL or anchor #}
+    <!-- Footer -->
+    <footer class="custom-nav py-4">
+      <div class="footer-container text-center">
+        <ul class="list-inline mb-2">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item"><a href="#">Upload</a></li>
+          <li class="list-inline-item"><a href="#">Features</a></li>
+          <li class="list-inline-item"><a href="#">Contact</a></li>
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
         </ul>
-      </div>
-      <div class="copyright">
-        <p style="font-family: inter; color: #000000; font-size: 24px; font-weight: 400;">&copy;{% now "Y" %} Fixit Forward, Inc.</p>
+        <p class="mb-0">&copy; 2025 Fixit Forward, Inc.</p>
       </div>
     </footer>
 

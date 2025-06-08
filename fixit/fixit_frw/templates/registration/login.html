@@ -20,12 +20,9 @@
 </nav>
 
 <div class="login-container">
-    <img src="{% static '/Images/logo-ikon-removebg-preview.png' %}" alt="logo" width="475" height="475">
-
+  <img src="{% static 'Images/logo-ikon-removebg-preview.png' %}" alt="logo" width="475.17px" height="475.17px" />
     <div class="card p-4">
-
         <h2 class="text-center mb-3">LOGIN</h2>
-
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -34,7 +31,6 @@
                 </div>
             {% endfor %}
         {% endif %}
-
         {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
                 <div class="alert alert-danger" role="alert">{{ error }}</div>
