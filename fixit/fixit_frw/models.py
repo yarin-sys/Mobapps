@@ -4,6 +4,12 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     phone = models.CharField(null=True, blank=True,unique=True, max_length=20)
     address = models.TextField()
+    profile_pict = models.ImageField(
+        upload_to='profile_pics/',
+        null=False,
+        blank=True,
+        default='profile_pic/default.jpg' #default profpic if inputted null
+    )
 
 class RepairRequest(models.Model):
     item_name = models.CharField(max_length=255)
@@ -19,3 +25,6 @@ class ItemImage(models.Model):
     request = models.ForeignKey(RepairRequest, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='repair_images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image for {self.request.item_name}"

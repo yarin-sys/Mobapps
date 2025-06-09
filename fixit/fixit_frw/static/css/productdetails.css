@@ -1,0 +1,118 @@
+/* productdetails.css */
+
+body {
+  padding-top: 80px; /* prevent overlap with fixed navbar */
+  background-color: #fff6e5;
+}
+
+.container-card {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.pict-desc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pict, .desc {
+  flex: 1 1 300px;
+}
+
+.pict img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.desc h1, .desc h2, .desc p {
+  margin-bottom: 15px;
+}
+
+.confirm {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.map {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.map button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.map button:hover {
+  background-color: #0056b3;
+}
+
+.confirm .btn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.confirm .btn button {
+  flex: 1 1 auto;
+  background-color: #ffc107;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+.confirm .btn button a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .desc h1 {
+    font-size: 1.5rem;
+  }
+
+  .desc h2 {
+    font-size: 1.25rem;
+  }
+
+  .desc p {
+    font-size: 1rem;
+  }
+
+  .map button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .confirm .btn {
+    flex-direction: column;
+  }
+
+  .confirm .btn button {
+    width: 100%;
+  }
+}

@@ -31,3 +31,8 @@ body {
   transform: translate(-50%, -50%);
   color: #164058;
 }
+
+.btn-outline-primary.btn-sm {
+  padding: 0.2rem 0.4rem;  /* Even smaller padding */
+  font-size: 0.75rem;      /* Smaller font */
+}

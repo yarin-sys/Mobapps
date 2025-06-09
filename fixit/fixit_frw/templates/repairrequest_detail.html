@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ repair_request.item_name }} Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-4">
+    <h1>{{ repair_request.item_name }}</h1>
+    <p><strong>Description:</strong> {{ repair_request.description }}</p>
+    <p><strong>Pickup Address:</strong> {{ repair_request.pickup_address }}</p>
+    <p><strong>Offer Price:</strong> ${{ repair_request.offer_price }}</p>
+    <p><strong>Created At:</strong> {{ repair_request.created_at }}</p>
+
+    <h3>Images</h3>
+    <div class="row">
+        {% for image in repair_request.images.all %}
+        <div class="col-md-3 mb-3">
+            <img src="{{ image.image.url }}" class="img-fluid img-thumbnail" alt="Image for {{ repair_request.item_name }}">
+        </div>
+        {% empty %}
+        <p>No images available.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'repairrequest_list' %}" class="btn btn-secondary mt-3">Back to list</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff6e5;
+  font-family: "Poppins", sans-serif;
+}
+
+nav {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  width: 100%;
+  height: 60px;
+  background-color: transparent;
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.link-container a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Login layout */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+  padding: 20px;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.login-container img {
+  width: 475px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.card {
+  max-width: 574px;
+  border-radius: 2rem;
+  background-color: #ffc611;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.form-control {
+  height: 3.5rem;
+  border: black solid 3px;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+#login-btn,
+#sign-up-btn {
+  height: 3.5rem;
+  border: black solid 3px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+#login-form button {
+  background-color: #164058;
+  color: #fff6e5;
+}
+
+#login-btn a {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.form-control::placeholder,
+.teks-input input {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.container-list ul li a {
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  color: #000000;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.3s ease-in-out;
+}
+
+.container-list ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+li {
+  list-style-type: none;
+}
+
+footer {
+  margin-top: 5rem;
+  text-align: center;
+  position: relative;
+}
+
+.copyright p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  bottom: 30%;
+  background-color: #422d19;
+  transition: 0.3s ease-in-out;
+}
+
+/* ✅ Responsive layout fix */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .login-container img {
+    width: 70%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    padding: 1.5rem;
+  }
+
+  .form-control,
+  #login-btn,
+  #sign-up-btn {
+    height: auto;
+    font-size: 1rem;
+  }
+
+  #login-btn a {
+    font-size: 1rem;
+  }
+}

@@ -12,33 +12,40 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg fixed-top px-4 shadow-sm" style="background-color: #FFF6E5;">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">
-      <img src="{% static 'Images/logo-fixit.jpg' %}" alt="Fixit Forward" width="150" height="60"/>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="upload">Upload</a></li>
-        <li class="nav-item"><a class="nav-link" href="#user">User</a></li>
-        <li class="nav-item"><a class="nav-link" href="#repairer">Repairer</a></li>
-        <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
-      </ul>
-      <div class="d-flex align-items-center gap-3">
-        <i class="fa-solid fa-magnifying-glass" id="search-icon" style="cursor: pointer;"></i>
-        <form class="d-flex d-none" id="search-form">
-          <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        <a href="Profile" class="text-decoration-none">Profile</a>
+  <!-- Start of Navbar -->.
+  <nav class="navbar navbar-expand-lg fixed-top px-4 shadow-sm" style="background-color: #FFF6E5;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'landing_page' %}">
+        <img src="{% static 'Images/logo-fixit.jpg' %}" alt="Fixit Forward Logo" width="150" height="60"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="{% url 'upload_item' %}">Upload Item</a></li>
+          <li class="nav-item"><a class="nav-link" href="#user">User Guide</a></li> {# Assuming these are sections on the page or separate pages #}
+          <li class="nav-item"><a class="nav-link" href="#repairer">Repairer Guide</a></li>
+          <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <i class="fa-solid fa-magnifying-glass" id="search-icon" style="cursor: pointer;"></i>
+          <form class="d-flex d-none" id="search-form" method="GET" action="#"> {# Add action for search #}
+            <input class="form-control me-2" type="search" name="q" placeholder="Search items..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          {% if user.is_authenticated %}
+            <a href="#" class="text-decoration-none me-2">Hi, {{ user.username }}</a> {# Link to profile page #}
+            <a href="{% url 'logout' %}" class="btn btn-outline-primary btn-sm">Logout</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-secondary btn-sm ms-2">Sign Up</a>
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  <!-- Navbar -->.
 
 <!-- Hero Header -->
 <header class="hero-wrapper mt-5">
@@ -62,101 +69,30 @@
       <h4 class="mb-0">Featured Items</h4>
       <button class="btn btn-link text-warning fw-bold">Load More <i class="fas fa-caret-right"></i></button>
     </div>
+
     <div class="scrolling-wrapper d-flex overflow-auto pb-3">
-      <!-- Card Items -->
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem2.png' %}" class="card-img-top" alt="Black Headphone">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Black Headphone</p>
+      {% for request in repair_requests %}
+        <div class="card custom-card me-3">
+          {% if request.images.all %}
+            <img src="{{ request.images.first.image.url }}" class="card-img-top" alt="{{ request.item_name }}">
+          {% else %}
+            <img src="{% static 'default_image.jpg' %}" class="card-img-top" alt="No image">
+          {% endif %}
+          <div class="card-body text-center">
+            <h5 class="card-title">
+              <a href="{% url 'repairrequest_detail' request.pk %}" class="card-title fw-bold mb-0 text-decoration-none text-dark">
+                {{ request.item_name }}
+              </a>
+            </h5>
+            <p class="card-text">{{ request.description|truncatewords:5 }}</p>
+          </div>
         </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem4.png' %}" class="card-img-top" alt="Blue Controller">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Blue Controller</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem1.jpg' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Black Blender</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem7.png' %}" class="card-img-top" alt="Black Blender7">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Broken Blender</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem8.jpg' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Chainsaw</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem9.jpg' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Coffee Machine</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem10.png' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Glue Gun</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem11.jpg' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Saw Broken</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem12.png' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Rusty Blade</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem13.png' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Broken Sole</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem14.png' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Broken Lamp</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem15.jpg' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Detached Hammer Head</p>
-        </div>
-      </div>
-
-      <div class="card custom-card me-3">
-        <img src="{% static 'Images/brokenitem16.png' %}" class="card-img-top" alt="Black Blender">
-        <div class="card-body text-center">
-          <p class="card-title fw-bold mb-0">Broken Plushie</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      {% endfor %}
+   </div>
+ </div>
 </section>
+
+<!-- Carousel Section -->
 
 
 <!-- Start of second section -->
