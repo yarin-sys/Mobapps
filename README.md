@@ -9,8 +9,9 @@ Before you begin, ensure you have the following installed:
 * Pip (Python package installer)
 * PostgreSQL (Database server)
 * Git (for version control)
+* Recommended Operating System to run: Linux 
 
-## Setup Instructions
+## Getting Started
 
 Follow these steps to get the Fixit Forward application running locally:
 
@@ -35,21 +36,55 @@ python3 -m venv env
 ```bash
 pip install -r requirements.txt
 ```
-### 5. Run Database Migrations
+
+### 5. PostgreSQL Setup
+- Start the postgres service
+```bash
+sudo systemctl start postgresql
+```
+or if that does not work, try
+```bash
+sudo service start postgresql
+```
+
+- Check if it is running
+```bash
+sudo systemctl status postgresql
+```
+- Set up database and user (Mandatory)
+```bash
+sudo -u postgres psql -c "CREATE DATABASE fixit;"
+sudo -u postgres psql -c "CREATE USER vidky WITH PASSWORD 'vickyganteng&&';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE fixit TO vidky;"
+```
+
+### 6. Run Database Migrations
 ```bash
 python3 manage.py makemigrations fixit_frw
 python3 manage.py migrate
 ```
 
-### 6. Create a Superuser (Admin account)
+### 7. Create a Superuser (Admin account)
 ```bash
 python3 manage.py createsuperuser
 ```
 
-### 7. Run the server
+### 8. Run the server
 ```bash
-python3 manage.py createsuperuser
+python3 manage.py runserver  
 ```
+
+### 9. Access the server
+Access this in your local browser
+```bash
+localhost:8000
+```
+
+## Authors
+- [Teuku Achmad Ra'di Syah](https://github.com/yarin-sys) (23/511627/PA/21833)
+- [I Putu Herjuna Manasye Suarthana](https://github.com/HermanCS-07) (23/511460/PA/21801)
+- [Ivan Adito Arba Putra](https://github.com/ivanadito-ap) (23/511562/PA/21821)
+- [Muhammad Rafif Akio Sarwadi](https://github.com/) (23/511466/PA/21802)
 
 
 
