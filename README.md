@@ -42,7 +42,7 @@ Follow these steps to get the Fixit Forward application running locally:
 ### 1. Clone the Repository
 Get the project code onto your local machine using the provided Git repository link:
 ```bash
-git clone (https://github.com/yarin-sys/Mobapps.git)
+git clone https://github.com/yarin-sys/Mobapps.git
 cd Mobapps
 ```
 
