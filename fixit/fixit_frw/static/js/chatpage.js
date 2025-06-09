@@ -2,13 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const chatBox = document.getElementById("chat-box");
   const textInput = document.getElementById("text-input");
   const plusButton = document.getElementById("plus-button");
+  const defaultImg = document.body.dataset.defaultImg;
 
   // Function to create chat bubble
   function addChatBubble(message, isOffer = false) {
     const bubble = document.createElement("div");
     bubble.className = "chat-bubble-right";
     bubble.innerHTML = `
-      <img src="Images/test.png" class="rounded-circle" width="35" height="35" alt="User" />
+      <img src="${DEFAULT_IMG}" class="rounded-circle" width="35" height="35" alt="User" />
       <div class="chat-message">${message}</div>
     `;
     chatBox.appendChild(bubble);
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const bubble = document.createElement("div");
     bubble.className = "chat-bubble-right negotiation-container";
     bubble.innerHTML = `
-      <img src="Images/test.png" class="rounded-circle" width="35" height="35" alt="User" />
+      <img src="Images/default.jpg" class="rounded-circle" width="35" height="35" alt="User" />
       <input type="text" class="form-control negotiation-input" placeholder="Enter your price offer..." style="max-width: 70%; border-radius: 15px;"/>
     `;
     chatBox.appendChild(bubble);

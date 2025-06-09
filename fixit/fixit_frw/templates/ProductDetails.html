@@ -58,7 +58,7 @@
         </div>
         <div class="desc">
           <h1 style="font-weight: 700">{{ repair_request.item_name }}</h1>
-          <h2><b>Fee:</b> US{{ repair_request.offer_price }}</h2>
+          <h2><b>Fee:</b> ${{ repair_request.offer_price }}</h2>
           <div class="item_desc">
             <h2>Item Description:</h2>
             <p>{{ repair_request.description }}</p>
@@ -71,16 +71,12 @@
       </div>
 
       <div class="confirm">
-        <div class="map" onclick="goToHalamanB()">
-          <iframe src="{% static 'maps/index.html' %}" frameborder="1" onclick="goToHalamanB()"></iframe>
-          <button>GO TO MAP</button>
-        </div>
         <div class="btn">
           <button class="nav-item">
-            <a class="nav-link" href="{% url 'upload_success' %}">Fix it</a>
+            <a class="nav-link" href="{% url 'fixit_success_page' %}">Fix it</a>
           </button>
           <button class="nav-item">
-            <a class="nav-link" href="{% url 'chatpage' %}">Chat & Negotiated</a>
+            <a class="nav-link" href="{% url 'chatpage' repair_request.id %}">Chat & Negotiated</a>
           </button>
         </div>
       </div>
@@ -88,5 +84,6 @@
   </main>
 
     <script src="{% static 'js/productdetails.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -53,8 +53,9 @@ def product_details_views(request):
     return render(request, 'ProductDetails.html')
 
 @login_required
-def chat_page_views(request):
-    return render(request, 'chatpage.html')
+def chat_page_views(request, item_id):
+    item = get_object_or_404(RepairRequest, id=item_id)
+    return render(request, 'chatpage.html', {'item': item})
 
 @login_required
 def fixit_success_view(request):
@@ -90,6 +91,11 @@ def upload_item_view(request):
 def upload_success_view(request):
     return render(request, 'success_page.html')
 
+@login_required
+def fixit_success_view(request):
+    return render(request, 'fixit_success.html')
+
+
 # --- repairrequest models ---
 @login_required
 def repairrequest_list(request):
@@ -109,9 +115,7 @@ def confirmation_page_view(request, item_id):
     return render(request, "confirmationPage/index.html", {'item': item})
 
 def maps_page_view(request):
-    # Assuming maps/index.html is moved to templates/maps/index.html
-    # and its assets to static/maps/
-    return render(request, "maps/index.html")
+    return render(request, "maps.html")
 
 def history_page_view(request):
     # Assuming history/index.html is moved to templates/history/index.html
